@@ -1,4 +1,4 @@
-module paddleocr-go
+module github.com/m4hi2/paddleocr-go
 
 go 1.14
 
