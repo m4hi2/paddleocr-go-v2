@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"paddleocr-go/ocr"
+	"github.com/m4hi2/paddleocr-go/ocr"
 )
 
 var (
