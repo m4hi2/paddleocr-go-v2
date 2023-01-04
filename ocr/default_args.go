@@ -2,7 +2,7 @@ package ocr
 
 var (
 	defaultArgs = map[string]interface{}{
-		"use_gpu":         true,
+		"use_gpu":         false,
 		"ir_optim":        true,
 		"enable_mkldnn":   false,
 		"use_tensorrt":    false,
