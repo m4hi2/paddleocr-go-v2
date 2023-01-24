@@ -24,7 +24,7 @@ func (a xIntSortBy) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a xIntSortBy) Less(i, j int) bool { return a[i][0] < a[j][0] }
 
 type DetPostProcess interface {
-	Run(output *paddle.ZeroCopyTensor, oriH, oriW int, ratioH, ratioW float64) [][][]int
+	Run(output *paddle.Tensor, oriH, oriW int, ratioH, ratioW float64) [][][]int
 }
 
 type DBPostProcess struct {
@@ -235,8 +235,11 @@ func (d *DBPostProcess) filterTagDetRes(boxes [][][]int, oriH, oriW int) [][][]i
 	return points
 }
 
-func (d *DBPostProcess) Run(output *paddle.ZeroCopyTensor, oriH, oriW int, ratioH, ratioW float64) [][][]int {
-	v := output.Value().([][][][]float32)
+func (d *DBPostProcess) Run(output *paddle.Tensor, oriH, oriW int, ratioH, ratioW float64) [][][]int {
+	// 4 dimensional tensor
+	outData := make([][][][]float32, numElements(output.Shape()))
+	output.CopyToCpu(outData)
+	v := outData
 
 	shape := output.Shape()
 	height, width := int(shape[2]), int(shape[3])

@@ -279,3 +279,11 @@ func convertYaml2Map(i interface{}) interface{} {
 	}
 	return i
 }
+
+func numElements(shape []int32) int32 {
+	n := int32(1)
+	for _, v := range shape {
+		n *= v
+	}
+	return n
+}
