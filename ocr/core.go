@@ -64,10 +64,6 @@ func (model *PaddleModel) LoadModel(modelDir string) {
 		config.SwitchIrOptim(true)
 	}
 
-	// false for zero copy tensor
-	config.SwitchUseFeedFetchOps(false)
-	config.SwitchSpecifyInputNames(true)
-
 	model.predictor = paddle.NewPredictor(config)
 	model.input = model.predictor.GetInputTensors()[0]
 	model.outputs = model.predictor.GetOutputTensors()
