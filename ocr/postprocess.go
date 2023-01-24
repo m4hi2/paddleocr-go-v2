@@ -1,7 +1,7 @@
 package ocr
 
 import (
-	"github.com/m4hi2/paddleocr-go/paddle"
+	"github.com/m4hi2/paddle"
 	"image"
 	"image/color"
 	"math"

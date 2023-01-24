@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"github.com/m4hi2/paddleocr-go/paddle"
+	"github.com/m4hi2/paddle"
 	"image"
 	"image/color"
 	"io"
