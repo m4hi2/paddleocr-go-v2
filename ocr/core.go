@@ -51,7 +51,7 @@ func (model *PaddleModel) LoadModel(modelDir string) {
 
 	config.SetModel(modelDir+"/model", modelDir+"/params")
 	if model.useGPU {
-		config.EnableUseGpu(model.initGPUMem, model.deviceID)
+		config.EnableUseGpu(uint64(model.initGPUMem), int32(model.deviceID))
 	} else {
 		config.DisableGpu()
 		config.SetCpuMathLibraryNumThreads(model.numThreads)
