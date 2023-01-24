@@ -53,10 +53,9 @@ func (model *PaddleModel) LoadModel(modelDir string) {
 	if model.useGPU {
 		config.EnableUseGpu(uint64(model.initGPUMem), int32(model.deviceID))
 	} else {
-		config.DisableGpu()
 		config.SetCpuMathLibraryNumThreads(model.numThreads)
 		if model.useMKLDNN {
-			config.EnableMkldnn()
+			config.EnableMKLDNN()
 		}
 	}
 
