@@ -1,5 +1,5 @@
 # params for prediction engine
-use_gpu: true
+use_gpu: false
 ir_optim: true
 enable_mkldnn: false
 # use_zero_copy_run: true
