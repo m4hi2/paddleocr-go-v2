@@ -46,7 +46,7 @@ func NewPaddleModel(args map[string]interface{}) *PaddleModel {
 }
 
 func (model *PaddleModel) LoadModel(modelDir string) {
-	config := paddle.NewAnalysisConfig()
+	config := paddle.NewConfig()
 	config.DisableGlogInfo()
 
 	config.SetModel(modelDir+"/model", modelDir+"/params")
