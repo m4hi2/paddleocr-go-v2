@@ -65,8 +65,12 @@ func (model *PaddleModel) LoadModel(modelDir string) {
 	}
 
 	model.predictor = paddle.NewPredictor(config)
-	model.input = model.predictor.GetInputTensors()[0]
-	model.outputs = model.predictor.GetOutputTensors()
+	inputNames := model.predictor.GetInputNames()
+	outputNames := model.predictor.GetOutputNames()
+	model.input = model.predictor.GetInputHandle(inputNames[0])
+	for _, v := range outputNames {
+		model.outputs = append(model.outputs, model.predictor.GetOutputHandle(v))
+	}
 }
 
 type OCRText struct {
