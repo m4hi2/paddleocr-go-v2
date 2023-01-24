@@ -21,8 +21,8 @@ import (
 
 type PaddleModel struct {
 	predictor *paddle.Predictor
-	input     *paddle.ZeroCopyTensor
-	outputs   []*paddle.ZeroCopyTensor
+	input     *paddle.Tensor
+	outputs   []*paddle.Tensor
 
 	useGPU      bool
 	deviceID    int
