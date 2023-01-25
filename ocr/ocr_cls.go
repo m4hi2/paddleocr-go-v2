@@ -67,26 +67,30 @@ func (cls *TextClassifier) Run(imgs []gocv.Mat) []gocv.Mat {
 		}
 
 		st := time.Now()
-		cls.input.SetValue(normImgs)
+		//cls.input.SetValue(normImgs)
+		cls.input.CopyFromCpu(normImgs)
 		cls.input.Reshape([]int32{int32(j - i), int32(c), int32(h), int32(w)})
 
-		cls.predictor.SetZeroCopyInput(cls.input)
-		cls.predictor.ZeroCopyRun()
-		cls.predictor.GetZeroCopyOutput(cls.outputs[0])
-		cls.predictor.GetZeroCopyOutput(cls.outputs[1])
-
+		//cls.predictor.SetZeroCopyInput(cls.input)
+		//cls.predictor.ZeroCopyRun()
+		//cls.predictor.GetZeroCopyOutput(cls.outputs[0])
+		//cls.predictor.GetZeroCopyOutput(cls.outputs[1])
 		var probout [][]float32
 		var labelout []int64
 		if len(cls.outputs[0].Shape()) == 2 {
-			probout = cls.outputs[0].Value().([][]float32)
+			//probout = cls.outputs[0].Value().([][]float32)
+			cls.outputs[0].CopyToCpu(probout)
 		} else {
-			labelout = cls.outputs[0].Value().([]int64)
+			//labelout = cls.outputs[0].Value().([]int64)
+			cls.outputs[0].CopyToCpu(labelout)
 		}
 
 		if len(cls.outputs[1].Shape()) == 2 {
-			probout = cls.outputs[1].Value().([][]float32)
+			//probout = cls.outputs[1].Value().([][]float32)
+			cls.outputs[1].CopyToCpu(probout)
 		} else {
-			labelout = cls.outputs[1].Value().([]int64)
+			//labelout = cls.outputs[1].Value().([]int64)
+			cls.outputs[1].CopyToCpu(labelout)
 		}
 		clsTime += int64(time.Since(st).Milliseconds())
 
